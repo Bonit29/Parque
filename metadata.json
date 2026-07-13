@@ -1,0 +1,6 @@
+{
+  "name": "Parqueadero Inteligente",
+  "description": "Sistema de gestión y reserva de parqueadero en tiempo real con roles de usuario, operador y administrador.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
