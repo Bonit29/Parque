@@ -66,10 +66,9 @@ app.get("/api/realtime", (req, res) => {
 
 // --- STATE SEEDING (IN-MEMORY DATABASE) ---
 let usuarios: Usuario[] = [
-  { id: "u_moriix", nombre: "Moriix", email: "moriix@parqueadero.com", telefono: "3201111111", rol: "ADMIN", createdAt: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString(), password: "Moriix1996", verificado: true },
-  { id: "u1", nombre: "Juan Pérez", email: "juan@correo.com", telefono: "3001234567", rol: "CLIENT", createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(), password: "123456", verificado: true },
-  { id: "u2", nombre: "Carlos Gómez (Operador)", email: "carlos@parqueadero.com", telefono: "3119876543", rol: "OPERATOR", createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(), password: "123456", verificado: true },
-  { id: "u3", nombre: "Ana Martínez (Administrador)", email: "admin@parqueadero.com", telefono: "3154567890", rol: "ADMIN", createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(), password: "123456", verificado: true }
+  { id: "u_bonit", nombre: "Bonit", email: "bonit@parqueadero.com", telefono: "3154567890", rol: "ADMIN", createdAt: new Date(Date.now() - 120 * 24 * 60 * 60 * 1000).toISOString(), password: "Bonit1996", verificado: true },
+  { id: "u_moriix", nombre: "Moriix", email: "moriix@parqueadero.com", telefono: "3201111111", rol: "OPERATOR", createdAt: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString(), password: "Moriix1996", verificado: true },
+  { id: "u1", nombre: "Juan Pérez", email: "juan@correo.com", telefono: "3001234567", rol: "CLIENT", createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(), password: "123456", verificado: true }
 ];
 
 let vehiculos: Vehiculo[] = [

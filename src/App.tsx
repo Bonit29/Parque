@@ -42,6 +42,7 @@ import {
   HelpCircle,
   Cpu,
   Lock,
+  Leaf,
   Mail,
   Phone,
   ArrowLeft,
@@ -50,12 +51,7 @@ import {
   Download
 } from "lucide-react";
 
-// Predefined accounts for swift testing in AI Studio demo environment
-const DEMO_ACCOUNTS = [
-  { label: "Cliente", email: "juan@correo.com", rol: "CLIENT" },
-  { label: "Operador", email: "carlos@parqueadero.com", rol: "OPERATOR" },
-  { label: "Administrador", email: "admin@parqueadero.com", rol: "ADMIN" }
-];
+// System main application component
 
 export default function App() {
   // System general state
@@ -1382,20 +1378,20 @@ export default function App() {
       </div>
 
       {/* TOPBAR HEADER */}
-      <header className="sticky top-0 z-40 bg-[#050c08]/80 backdrop-blur-md border-b border-neutral-900 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <header className="sticky top-0 z-40 bg-[#060b08]/90 backdrop-blur-md border-b border-neutral-800 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* Brand Logo */}
         <div className="flex items-center gap-2.5">
-          <div className="w-8.5 h-8.5 rounded-lg bg-gradient-to-tr from-emerald-600 to-teal-500 p-1.5 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-            <CarFront className="w-full h-full text-black stroke-[2.5]" />
+          <div className="w-8.5 h-8.5 rounded-full bg-gradient-to-tr from-[#14261c] to-[#0d1712] p-1.5 flex items-center justify-center border border-[#e2b13c]/40 shadow-lg">
+            <Leaf className="w-full h-full text-[#ecd197]" />
           </div>
           <div>
-            <h1 className="text-md font-display font-black tracking-tight text-white flex items-center gap-1.5 leading-none">
-              SmartPark
-              <span className="text-[10px] bg-emerald-950/80 text-emerald-400 px-1.5 py-0.5 rounded font-mono font-medium border border-emerald-800/40 tracking-wider">
-                PRO
+            <h1 className="text-md font-display font-bold tracking-tight text-[#f3f6f4] flex items-center gap-1.5 leading-none">
+              Testigos de Jehová
+              <span className="text-[9px] bg-[#1a2d1f] text-[#ecd197] px-1.5 py-0.5 rounded font-mono font-medium border border-[#2a4636] tracking-wider uppercase">
+                Eco-Sede
               </span>
             </h1>
-            <span className="text-[10px] text-neutral-400 leading-none">Parqueadero Inteligente IoT</span>
+            <span className="text-[10px] text-neutral-400 leading-none">Parqueadero Inteligente Ecológico</span>
           </div>
           <button
             onClick={() => setShowGuideModal(true)}
@@ -1406,21 +1402,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* Dynamic Pre-populated Demo Login Shortcuts */}
-        {!currentUser ? (
-          <div className="flex items-center gap-2 bg-neutral-900/60 p-1.5 rounded-xl border border-neutral-800/60">
-            <span className="text-[10px] text-neutral-400 px-2 font-medium">Demo Acceso Rápido:</span>
-            {DEMO_ACCOUNTS.map((acc) => (
-              <button
-                key={acc.rol}
-                onClick={() => handleDemoLogin(acc.email)}
-                className="px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-[10px] font-semibold text-neutral-200 cursor-pointer transition-all active:scale-95"
-              >
-                {acc.label}
-              </button>
-            ))}
-          </div>
-        ) : (
+        {currentUser && (
           <div className="flex items-center gap-3.5">
             {/* Active Sede Picker */}
             <div className="flex items-center gap-1.5">
@@ -1475,56 +1457,34 @@ export default function App() {
         )}
       </header>
 
-      {/* INTERACTIVE PLAYGROUND SWITCHER FOR TESTING */}
-      {currentUser && (
-        <div className="bg-[#0a0a0a]/40 border-b border-neutral-900 px-4 py-2 flex items-center justify-between gap-2 overflow-x-auto">
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] uppercase font-mono tracking-wider font-semibold text-emerald-400">Panel De Pruebas De Rol:</span>
-          </div>
-          <div className="flex bg-[#050505] p-0.5 rounded-lg border border-neutral-800">
-            {["CLIENT", "OPERATOR", "ADMIN"].map((role) => (
-              <button
-                key={role}
-                onClick={() => {
-                  setActiveRole(role as any);
-                  triggerToast(`Simulando rol de: ${role}`, 'info');
-                }}
-                className={`px-3 py-1 rounded text-[10px] font-bold uppercase transition-all cursor-pointer ${
-                  activeRole === role
-                    ? 'bg-emerald-500 text-black shadow-md'
-                    : 'text-neutral-400 hover:text-neutral-200'
-                }`}
-              >
-                {role === 'CLIENT' ? 'Cliente' : role === 'OPERATOR' ? 'Operador' : 'Administrador'}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* MAIN LAYOUT CANVAS */}
       <main className="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full space-y-6">
         
         {/* NO USER VIEW (LOGIN, REGISTER, VERIFICATION & RECOVERY SCREENS) */}
         {!currentUser ? (
           <div className="min-h-[70vh] flex flex-col items-center justify-center max-w-md mx-auto text-center space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 p-3.5 flex items-center justify-center shadow-2xl shadow-emerald-500/20 animate-bounce duration-1000">
-              <CarFront className="w-full h-full text-black stroke-[2.5]" />
+            <div className="relative">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-full blur-xl animate-pulse" />
+              <div className="relative w-20 h-20 rounded-full bg-[#14261c] border-2 border-[#e2b13c] p-4.5 flex items-center justify-center shadow-xl">
+                <Leaf className="w-10 h-10 text-[#ecd197] animate-pulse duration-[3000ms]" />
+                <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#2a4636] border border-[#e2b13c]/60 flex items-center justify-center shadow-lg">
+                  <CarFront className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+              </div>
             </div>
 
             {/* Simulated verification email banner if any is present */}
             {simulatedCode && (
-              <div className="w-full p-4 bg-emerald-950/80 border border-emerald-500/30 rounded-2xl text-left space-y-2.5 animate-pulse">
+              <div className="w-full p-4 bg-emerald-950/80 border border-emerald-500/30 rounded-2xl text-left space-y-2.5">
                 <div className="flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-xs font-bold text-emerald-300 font-sans">Simulador de Correo Saliente</span>
+                  <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs font-bold text-emerald-300 font-sans">Notificación de Correo Enviado</span>
                 </div>
                 <p className="text-[11px] text-neutral-300 font-sans leading-relaxed">
-                  Dado que este es un prototipo local, el sistema simula el envío del correo electrónico. Copie el siguiente código generado:
+                  ¡Notificación generada con éxito! Se ha enviado una notificación de registro y el código de verificación al correo del socio. Copie el código simulado a continuación para completar la activación:
                 </p>
                 <div className="bg-[#050505] border border-neutral-800 rounded-xl p-2.5 flex items-center justify-between font-mono text-xs font-bold text-emerald-400">
-                  <span>Código de Simulación:</span>
+                  <span>Código de Verificación:</span>
                   <span className="text-sm tracking-widest text-emerald-300 font-black bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800/60 select-all">{simulatedCode}</span>
                 </div>
               </div>
@@ -1535,10 +1495,10 @@ export default function App() {
               <div className="w-full space-y-5 animate-in fade-in duration-200">
                 <div className="space-y-2">
                   <h2 className="text-2xl font-display font-black tracking-tight text-white leading-tight">
-                    SmartPark IoT Pro
+                    Testigos de Jehová
                   </h2>
                   <p className="text-xs text-neutral-400 max-w-xs mx-auto">
-                    Ingrese a la plataforma para gestionar su estacionamiento en tiempo real o reservar su bahía de parqueo.
+                    Ingrese a la plataforma de Parqueadero Inteligente para gestionar su estacionamiento en tiempo real o reservar su bahía de parqueo.
                   </p>
                 </div>
 
@@ -1552,7 +1512,7 @@ export default function App() {
                           type="text"
                           value={loginEmail}
                           onChange={(e) => setLoginEmail(e.target.value)}
-                          placeholder="tu@correo.com o Moriix"
+                          placeholder="Usuario o correo electrónico"
                           className="bg-[#050505] border border-neutral-800 rounded-xl text-xs py-2 px-9 w-full text-slate-200 focus:outline-none focus:border-emerald-500 font-medium"
                           required
                         />
@@ -1600,31 +1560,6 @@ export default function App() {
                       className="text-[11px] text-emerald-400 hover:text-emerald-300 font-bold hover:underline cursor-pointer"
                     >
                       Regístrese Aquí
-                    </button>
-                  </div>
-                </div>
-
-                {/* Collapsible Demo Shortcut list underneath */}
-                <div className="bg-[#0a0a0a]/30 border border-neutral-900 rounded-2xl p-4 w-full space-y-3 shadow-md text-left">
-                  <div className="flex items-center gap-1.5 text-neutral-400 border-b border-neutral-900 pb-2">
-                    <Cpu className="w-4 h-4 text-emerald-500" />
-                    <span className="text-[10px] uppercase font-mono tracking-wider font-bold">Atajos de Prueba (AI Studio Demo)</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {DEMO_ACCOUNTS.map((acc) => (
-                      <button
-                        key={acc.rol}
-                        onClick={() => handleDemoLogin(acc.email)}
-                        className="py-2 px-1 rounded-xl bg-[#050505] hover:bg-[#0a0a0a] border border-neutral-800 hover:border-neutral-700 text-center text-[10px] font-bold text-neutral-300 cursor-pointer active:scale-95 transition-all"
-                      >
-                        {acc.label}
-                      </button>
-                    ))}
-                    <button
-                      onClick={() => handleDemoLogin("Moriix")}
-                      className="py-2 px-1 col-span-3 rounded-xl bg-[#0e1610] hover:bg-emerald-950/20 border border-emerald-900/30 hover:border-emerald-800 text-center text-[10px] font-bold text-emerald-400 cursor-pointer active:scale-95 transition-all"
-                    >
-                      🔑 Administrador Moriix (Moriix1996)
                     </button>
                   </div>
                 </div>
@@ -3720,7 +3655,7 @@ if ($method == 'GET') {
               <div className="p-6 bg-white text-slate-900 font-mono text-xs space-y-4 shadow-inner mx-4 my-5 rounded-lg border border-neutral-200">
                 {/* Cabecera del ticket */}
                 <div className="text-center border-b border-dashed border-slate-300 pb-4 space-y-1">
-                  <h4 className="font-extrabold text-sm uppercase tracking-wider">Smart Parking System</h4>
+                  <h4 className="font-extrabold text-sm uppercase tracking-wider">Testigos de Jehová</h4>
                   <p className="text-[10px] text-slate-500">Bogotá D.C. - Colombia</p>
                   <p className="text-[9px] text-slate-400">NIT: 901.234.567-8</p>
                   <p className="text-[10px] text-slate-600 font-bold mt-1">{selectedPagoForReceipt.parqueaderoNombre}</p>
@@ -3813,7 +3748,7 @@ if ($method == 'GET') {
                 </div>
 
                 <div className="text-center text-[9px] text-slate-400 border-t border-slate-100 pt-3 italic">
-                  ¡Gracias por su visita! Smart Parking System.
+                  ¡Gracias por su visita! Testigos de Jehová.
                 </div>
               </div>
 
@@ -3847,7 +3782,7 @@ if ($method == 'GET') {
 
       {/* FOOTER METADATA */}
       <footer className="mt-auto border-t border-neutral-900 bg-[#050505] text-center py-4 text-[10px] text-neutral-500 font-mono">
-        <div>SmartPark • IoT Web Application Workspace • Bogotá Colombia</div>
+        <div>Testigos de Jehová • IoT Web Application Workspace • Bogotá Colombia</div>
         <div className="text-neutral-600">Built using modern TypeScript, React, and Google Gemini 3.5 AI</div>
       </footer>
     </div>

@@ -1,19 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Organic Forest Palette Overrides for Tailwind classes */
+  --color-neutral-950: #060b08;
+  --color-neutral-900: #0d1712;
+  --color-neutral-800: #1b3024;
+  --color-neutral-700: #2a4636;
+  --color-neutral-600: #3b5f4a;
+  --color-neutral-500: #558568;
+  --color-neutral-400: #8eb09b;
+  --color-neutral-300: #b4cbbe;
+  --color-neutral-200: #d4e2da;
+  --color-neutral-100: #f3f6f4;
+
+  --color-emerald-500: #42a96e;
+  --color-emerald-400: #66c891;
+  --color-emerald-600: #308a54;
+  --color-emerald-950: #08120c;
+
+  --color-amber-500: #e2b13c;
+  --color-amber-400: #ecd197;
+  --color-amber-600: #b8860b;
+
+  --color-rose-500: #db6d6d;
+  --color-rose-600: #bc5555;
 }
 
-/* Base style resets */
+/* Base style resets with organic touch */
 body {
   font-family: var(--font-sans);
-  background-color: #050c08;
-  background-image: radial-gradient(circle at 50% 50%, #0a1c12 0%, #030805 100%);
+  background-color: #060b08;
+  background-image: 
+    radial-gradient(circle at 10% 20%, #0d1e14 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, #08160f 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #060b08 0%, #030604 100%);
   background-attachment: fixed;
-  color: #f0f4f1;
+  color: #f3f6f4;
 }
 
 .font-display {
@@ -24,24 +51,74 @@ body {
   font-family: var(--font-mono);
 }
 
+/* Natural Leaf-vein grid or organic dot pattern */
 .grid-dot {
-  background-image: radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(142, 176, 155, 0.05) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
 }
 
-/* Custom scrollbar to match botanical theme */
+/* Custom scrollbar matching botanical wood & leaves theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #030805;
+  background: #060b08;
 }
 ::-webkit-scrollbar-thumb {
-  background: #143521;
+  background: #1b3024;
   border-radius: 999px;
+  border: 1px solid #0d1712;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1b4d2e;
+  background: #2a4636;
 }
+
+/* Extra premium overrides for inline custom classes to keep full botanical integration */
+div[class*="bg-[#050505]"], 
+div[class*="bg-[#0a0a0a]"], 
+div[class*="bg-[#0c0c0c]"],
+section[class*="bg-[#050505]"], 
+form[class*="bg-[#050505]"] {
+  background-color: #0d1712 !important;
+  border-color: #1b3024 !important;
+}
+
+div[class*="bg-[#0a0a0a]/60"] {
+  background-color: rgba(13, 23, 18, 0.6) !important;
+  border-color: #1b3024 !important;
+}
+
+button[class*="bg-neutral-800"] {
+  background-color: #1b3024 !important;
+  border-color: #2a4636 !important;
+}
+button[class*="bg-neutral-800"]:hover {
+  background-color: #2a4636 !important;
+}
+
+input[class*="bg-[#050505]"] {
+  background-color: #060b08 !important;
+  border-color: #1b3024 !important;
+}
+input[class*="bg-[#050505]"]:focus {
+  border-color: #42a96e !important;
+}
+
+select[class*="bg-[#0a0a0a]"] {
+  background-color: #1b3024 !important;
+  border-color: #2a4636 !important;
+}
+
+/* Aesthetic ambient glows representing forest light shafts */
+.ambient-forest-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(66, 169, 110, 0.08) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 
